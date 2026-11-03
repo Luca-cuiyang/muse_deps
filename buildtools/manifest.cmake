@@ -33,6 +33,12 @@ if (NOT DEFINED LIB_OS OR LIB_OS STREQUAL "")
     endif()
 endif()
 
+# Emscripten cannot load shared objects at runtime. All consumed
+# dependencies must be linked into the WebAssembly module statically.
+if (LIB_OS STREQUAL "wasm")
+    set(DEP_STATIC ON)
+endif()
+
 if (NOT DEFINED LIB_ARCH OR LIB_ARCH STREQUAL "")
     if (LIB_OS STREQUAL "macos")
         list(LENGTH CMAKE_OSX_ARCHITECTURES _arch_count)
