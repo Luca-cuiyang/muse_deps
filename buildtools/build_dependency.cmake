@@ -149,6 +149,10 @@ function(_bd_cmake_build srcdir)
         string(APPEND _initial_cache "set(CMAKE_PREFIX_PATH \"${BD_DEPENDS_PREFIXES}\" CACHE STRING \"\" FORCE)\n")
     endif()
 
+    if(BD_OS STREQUAL "wasm")
+        string(APPEND _initial_cache "set(CMAKE_FIND_LIBRARY_SUFFIXES \".a\" CACHE STRING \"\" FORCE)\n")
+    endif()
+
     if(BD_OS STREQUAL "macos")
         if(BD_ARCH STREQUAL "universal")
             set(_osx_archs "x86_64;arm64")
