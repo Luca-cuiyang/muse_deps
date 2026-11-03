@@ -1,5 +1,6 @@
-if(BD_OS STREQUAL "windows")
+if(BD_OS STREQUAL "windows" OR BD_OS STREQUAL "wasm")
     set(LIBTYPE STATIC)
+    set(DEP_STATIC ON)
 else()
     set(LIBTYPE SHARED)
 endif()
