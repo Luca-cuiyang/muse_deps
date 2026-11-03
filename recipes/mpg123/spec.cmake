@@ -9,6 +9,9 @@ set(DEP_CMAKE_ARGS
     -DBUILD_LIBOUT123=OFF
     -DBUILD_PROGRAMS=OFF
 )
+set(DEP_CMAKE_ARGS_WASM
+    -DBUILD_SHARED_LIBS=OFF
+)
 
 set(DEP_PATCHES patch/0001-cmake-arm64-has-fpu.patch)
 
