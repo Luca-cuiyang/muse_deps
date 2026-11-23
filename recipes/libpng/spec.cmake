@@ -12,6 +12,12 @@ set(DEP_CMAKE_ARGS
     -DPNG_TESTS=OFF
     -DPNG_TOOLS=OFF
 )
+
+# On Windows the x86_64 build may run on an ARM64 host; libpng's NEON
+# detection then pulls in arm_neon.h while compiling with an x64 compiler.
+if(BD_OS STREQUAL "windows" AND NOT BD_ARCH STREQUAL "aarch64")
+    list(APPEND DEP_CMAKE_ARGS -DPNG_ARM_NEON=off)
+endif()
 set(DEP_CMAKE_ARGS_WASM
     -DPNG_SHARED=OFF
     -DPNG_STATIC=ON
